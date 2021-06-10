@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Error from './Error';
 
 const Formulario = ({ busqueda, guardarBusqueda, guardarConsulta }) => {
 
@@ -29,16 +30,15 @@ const Formulario = ({ busqueda, guardarBusqueda, guardarConsulta }) => {
         guardarError(false);
 
         guardarConsulta(true)
-
-
-        // pasarlo al compenente principal
-
+        
     }
 
     return ( 
        <form
        onSubmit={handleSubmit}
-       >
+        >
+       { error ? <Error mensaje='Ambos cmapos son obligatorios' /> : null }
+      
            <div className="input-field col s12">
                <input
                 type="text"
