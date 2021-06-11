@@ -1,23 +1,25 @@
-import React from 'react';
+import React from "react";
 
 const Clima = ({ resultado }) => {
+  if (!resultado) return null;
+  const { name, main, sys } = resultado;
+  const description = resultado.weather["0"].description;
 
-    const { name, main } = resultado;
+  return (
+    <div className="card-panel white col s12">
+      <div className="black-text">
+        <h4>
+          El clima en {name}, {sys.country}: {description}
+        </h4>
+        <h4>
+          Temp. <p className="temperatura">{main.temp} ºC</p>
+        </h4>
+        <h4>
+          Humedad <p className="temperatura">{main.humidity} %</p>
+        </h4>
+      </div>
+    </div>
+  );
+};
 
-    if(!name) return null;
-
-    const kelvin = 273.15;
-
-
-    return (  
-        <div className="card-panel white col s12">
-            <div className="black-text">
-            <h3>El clima de {name}  es: </h3>
-            <p className="temperatura">Cº{( main.temp - kelvin).toFixed(2)}</p>
-           
-            </div>
-        </div>
-    );
-}
- 
 export default Clima;
